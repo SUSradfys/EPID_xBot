@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPID_xBot", "EPID_xBot\EPID_xBot.csproj", "{CBA68181-8EA4-42D2-95A4-5859955EECFE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBA68181-8EA4-42D2-95A4-5859955EECFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBA68181-8EA4-42D2-95A4-5859955EECFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBA68181-8EA4-42D2-95A4-5859955EECFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBA68181-8EA4-42D2-95A4-5859955EECFE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
