@@ -104,7 +104,7 @@ namespace EPID_xBot
 
 
             // change lastActivity
-            if (plans.Rows.Count > 0)  // CHange 2000 to 0 later on
+            if (plans.Rows.Count > 0) 
             {
                 DateTime lastPlan = (DateTime)plans.Rows[plans.Rows.Count - 1]["DateTime"];
 
