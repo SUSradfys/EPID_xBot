@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<xports xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xporter>
+    <name>EPIDRCV</name>
+    <active>true</active>
+    <ipstring>10.0.129.29</ipstring>
+    <port>124</port>
+    <AEtitle>EPIDRCV</AEtitle>
+    <SQLstring>select Patient.PatientId, ImageUID=Epid.SliceUID, RefUID=Slice.SliceUID, DateTime=Epid.CreationDate
+from
+(select Slice.SliceUID, SliceRT.RadiationSer, Slice.CreationDate, Radiation.RadiationId, RTPlanSer=(select max(RTPlanSer) from (values (RTPlan.RTPlanSer), (PlanRelationship.RTPlanSer)) as RTSer(RTPlanSer))
+from Slice 
+inner join SliceRT on SliceRT.SliceSer=Slice.SliceSer
+inner join Radiation on Radiation.RadiationSer=SliceRT.RadiationSer
+inner join RTPlan on RTPlan.PlanSetupSer=Radiation.PlanSetupSer
+full join PlanRelationship on PlanRelationship.RelatedRTPlanSer=RTPlan.RTPlanSer
+where Slice.CreationDate&gt;'this.LastActive' 
+and SliceCharacteristics like 'ORIGINAL\PRIMARY\PORTAL\ACQUIRED_DOSE%' 
+and Slice.ResourceSer is not null) as Epid
+inner join RTPlan on RTPlan.RTPlanSer=Epid.RTPlanSer
+inner join Radiation on Radiation.PlanSetupSer=RTPlan.PlanSetupSer
+inner join ImageSlice on ImageSlice.ImageSer=Radiation.RefImageSer
+inner join Slice on Slice.SliceSer=ImageSlice.SliceSer
+inner join PlanSetup on PlanSetup.PlanSetupSer=RTPlan.PlanSetupSer
+inner join Course on Course.CourseSer=PlanSetup.CourseSer
+inner join Patient on Patient.PatientSer=Course.PatientSer
+where Radiation.RadiationId=Epid.RadiationId
+order by Epid.CreationDate
+    </SQLstring>
+    <include>
+      <item>plan</item>
+      <item>fieldDoses</item>
+    </include>
+    <lastActivity>2017-03-18 14:19:48.613</lastActivity>
+    <allowDoublets>false</allowDoublets>
+  </xporter>
+</xports>
