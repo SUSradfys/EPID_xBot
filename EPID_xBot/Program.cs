@@ -107,7 +107,7 @@ namespace EPID_xBot
             if (plans.Rows.Count > 0) 
             {
                 DateTime lastPlan = (DateTime)plans.Rows[plans.Rows.Count - 1]["DateTime"];
-
+                xport.xporter.lastActivity = lastPlan.ToString("yyyy-MM-dd HH:mm:ss.fff");
                 // write xml
                 using (FileStream fs = new FileStream(Settings.xPorterPath, FileMode.Create))
                 {
